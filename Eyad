@@ -1,0 +1,30 @@
+import os
+import telebot
+
+TOKEN = os.environ.get("BOT_TOKEN")
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.reply_to(
+        message,
+        "مرحباً بك في بوت My Sudani Points! 🤖\n"
+        "البوت جاهز للعمل.\n\n"
+        "الأوامر المتاحة:\n"
+        "/points - حالة النقاط\n"
+        "/status - حالة البوت"
+    )
+
+@bot.message_handler(commands=["points"])
+def points(message):
+    bot.reply_to(
+        message,
+        "لم يتم ربط البوت بحساب My Sudani بعد."
+    )
+
+@bot.message_handler(commands=["status"])
+def status(message):
+    bot.reply_to(message, "البوت يعمل حالياً ✅")
+
+bot.infinity_polling()
